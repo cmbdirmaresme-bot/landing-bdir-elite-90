@@ -3,227 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDiR Maresme - El Mejor Centro de Fitness</title>
+    <title>BDiR Maresme - Programa ELITE 90: Transforma tu cuerpo en 3 meses</title>
     
-    <!-- 1. IMPORTAR TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 2. CONFIGURACIÓN DE FUENTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- 3. IMPORTAR ICONOS -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Configuración de estilos personalizados -->
     <style>
         body { font-family: 'Open Sans', sans-serif; }
         h1, h2, h3, h4, button, .font-title { font-family: 'Montserrat', sans-serif; }
         
-        /* Color azul BDiR personalizado */
         .text-bdir-blue { color: #009FE3; }
         .bg-bdir-blue { background-color: #009FE3; }
+        .border-bdir-blue { border-color: #009FE3; }
         .hover-bg-bdir-dark:hover { background-color: #007bb0; }
+        .ring-bdir-blue:focus { --tw-ring-color: #009FE3; }
         
-        /* Estilos para el selector de idioma */
         .lang-btn { cursor: pointer; transition: opacity 0.2s; }
         .lang-btn.active { font-weight: bold; text-decoration: underline; color: #009FE3; }
         .lang-btn:hover { opacity: 0.8; }
         
-        /* Estilos para el modal */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236B7280'%3e%3cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
         .modal-overlay {
-            z-index: 50; /* Por encima de todo */
+            z-index: 1000;
             background-color: rgba(0, 0, 0, 0.7);
         }
-
-        /* Estilo para las tarjetas de servicio (Ahora son enlaces) */
-        .service-card {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform: translateY(0);
+        
+        .policy-section {
+            margin-bottom: 1.5rem;
         }
-        .service-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transform: translateY(-4px);
+        
+        .policy-section h3 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #009FE3;
+        }
+        
+        .policy-section p, .policy-section li {
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .policy-section ul {
+            margin-left: 1.5rem;
+            list-style-type: disc;
         }
     </style>
+    <meta name="description" content="Programa ELITE 90 en BDiR Maresme: 3 meses de transformación con entrenamientos en grupo pequeño y asesoría nutricional. Máximo 6 personas.">
 </head>
-<body class="min-h-screen bg-white font-sans text-gray-800 antialiased">
+<body class="min-h-screen bg-white font-sans text-gray-800 antialiased selection:bg-blue-100 selection:text-blue-900">
 
-    <!-- --- HEADER SECTION (SOLO LOGO Y SELECTOR DE IDIOMA) --- -->
-    <header class="shadow-md sticky top-0 bg-white z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- LOGO BDiR MARESME -->
-                <a href="#" class="block cursor-pointer p-1 rounded-md transition-colors">
-                    <div class="text-2xl font-bold tracking-tighter text-bdir-blue font-title">
-                        BDiR <span class="font-light text-gray-500 ml-1">Maresme</span>
-                    </div>
-                </a>
+    <!-- HERO SECTION -->
+    <header class="relative bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
                 
-                <!-- SELECTOR DE IDIOMA -->
-                <div class="flex space-x-2 text-sm font-semibold text-gray-500 z-50 relative">
-                    <button onclick="changeLanguage('es')" id="btn-es" class="lang-btn active">ES</button>
-                    <span>|</span>
-                    <button onclick="changeLanguage('ca')" id="btn-ca" class="lang-btn">CA</button>
+                <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <polygon points="50,0 100,0 50,100 0,100" />
+                </svg>
+
+                <div class="pt-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                    <div class="flex items-center cursor-pointer" onclick="redirectToHome()">
+                        <div class="text-2xl font-bold tracking-tighter text-bdir-blue font-title">
+                            BDiR <span class="font-light text-gray-500 ml-1">Maresme</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2 text-sm font-semibold text-gray-500 z-50 relative">
+                        <button onclick="changeLanguage('es')" id="btn-es" class="lang-btn active">ES</button>
+                        <span>|</span>
+                        <button onclick="changeLanguage('ca')" id="btn-ca" class="lang-btn">CA</button>
+                    </div>
+                </div>
+
+                <main class="mt-10 mx-auto px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                            <span class="block xl:inline" data-i18n="hero_title_1">Transforma tu cuerpo</span>
+                            <span class="block text-bdir-blue xl:inline" data-i18n="hero_title_2">Programa ELITE 90 - 3 meses de cambio real</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" data-i18n="hero_subtitle">
+                            2 entrenamientos por semana en small group training (máximo 6 personas) + asesoría nutricional mensual. Resultados comprobados en 90 días.
+                        </p>
+                        
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start lg:hidden">
+                            <a href="#formulario" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-bdir-blue hover:bg-[#007bb0] transition-colors">
+                                Reservar Mi Sesión Inicial
+                            </a>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- IMAGEN HERO Y CONTENEDOR FORMULARIO -->
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-100 flex items-center justify-center relative h-96 lg:h-auto">
+            <!-- Imagen de fondo (Entrenamiento en grupo) -->
+            <div class="absolute inset-0 w-full h-full">
+                <img class="h-full w-full object-cover opacity-90" src="https://unsplash.com/es/fotos/un-grupo-de-mujeres-haciendo-flexiones-en-un-gimnasio-vCPRAwU42GA">
+                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-transparent lg:via-transparent"></div>
+            </div>
+
+            <!-- FORMULARIO FLOTANTE CON DROPDOWN FUNCIONAL -->
+            <div id="formulario" class="relative z-20 w-full max-w-md px-4 py-10 lg:mr-12">
+                <div class="bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bdir-blue">
+                    
+                    <!-- Vista del Formulario -->
+                    <div id="form-view">
+                        <h3 class="text-xl font-bold text-gray-900 text-center mb-2 font-title" data-i18n="form_title">
+                            Reserva tu Sesión Inicial
+                        </h3>
+                        <p class="text-sm text-gray-600 text-center mb-6" data-i18n="form_subtitle">
+                            Completa el formulario y te contactaremos para agendar tu primera sesión ELITE 90 sin compromiso.
+                        </p>
+                        
+                        <!-- FORMULARIO CON DROPDOWN -->
+                        <form id="main-form" action="https://formsubmit.co/cm.bdirmaresme@gmail.com" method="POST" class="space-y-4">
+                            <!-- Campos Ocultos -->
+                            <input type="hidden" name="_subject" value="Nuevo Lead ELITE 90 - Landing">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="https://cmbdirmaresme-bot.github.io/elite90/">
+
+                            <!-- PASO 1: SELECT DE MÉTODO DE CONTACTO (SIEMPRE VISIBLE) -->
+                            <div class="space-y-2">
+                                <label for="contact_method" class="block text-sm font-semibold text-gray-700" data-i18n="label_contact_method">
+                                    ¿Cómo prefieres que te contactemos?
+                                </label>
+                                <select id="contact_method" name="metodo_contacto" required onchange="updateContactFields(this.value)" class="block w-full rounded-md border-gray-300 bg-gray-50 border px-4 py-3 text-gray-900 focus:border-bdir-blue focus:ring-bdir-blue focus:outline-none transition">
+                                    <option value="">-- Selecciona una opción --</option>
+                                    <option value="Telefono" data-i18n="option_phone">Teléfono</option>
+                                    <option value="WhatsApp" data-i18n="option_whatsapp">WhatsApp</option>
+                                    <option value="Email" data-i18n="option_email">Email</option>
+                                </select>
+                            </div>
+
+                            <!-- PASO 2: NOMBRE (APARECE CUANDO SELECCIONA) -->
+                            <div id="fieldNombre" class="hidden">
+                                <label for="nombre" class="block text-sm font-semibold text-gray-700">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" 
+                                       class="block w-full rounded-md border-gray-300 bg-gray-50 border px-4 py-3 text-gray-900 focus:border-bdir-blue focus:ring-bdir-blue focus:outline-none transition">
+                            </div>
+
+                            <!-- PASO 3A: TELÉFONO (SI ELIGE TELÉFONO O WHATSAPP) -->
+                            <div id="fieldTelefono" class="hidden">
+                                <label for="telefono" class="block text-sm font-semibold text-gray-700">Teléfono Móvil</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="Ej: 93 123 45 67" 
+                                       class="block w-full rounded-md border-gray-300 bg-gray-50 border px-4 py-3 text-gray-900 focus:border-bdir-blue focus:ring-bdir-blue focus:outline-none transition">
+                            </div>
+
+                            <!-- PASO 3B: EMAIL (SI ELIGE EMAIL) -->
+                            <div id="fieldEmail" class="hidden">
+                                <label for="email" class="block text-sm font-semibold text-gray-700">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" placeholder="tu@email.com" 
+                                       class="block w-full rounded-md border-gray-300 bg-gray-50 border px-4 py-3 text-gray-900 focus:border-bdir-blue focus:ring-bdir-blue focus:outline-none transition">
+                            </div>
+
+                            <!-- CASILLA TÉRMINOS (SIEMPRE VISIBLE) -->
+                            <div class="flex items-start pt-2">
+                                <div class="flex items-center h-5">
+                                    <input id="terms" name="terms_accepted" type="checkbox" required class="focus:ring-bdir-blue h-4 w-4 text-bdir-blue border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3 text-xs leading-5">
+                                    <label for="terms" class="font-medium text-gray-600">
+                                        <span data-i18n="form_terms_text_part1">He leído y acepto la</span> 
+                                        <a href="#" onclick="openModal('privacidad'); return false;" class="text-bdir-blue hover:underline font-bold" data-i18n="form_privacy_link">Política de Privacidad</a>,
+                                        <a href="#" onclick="openModal('cookies'); return false;" class="text-bdir-blue hover:underline font-bold" data-i18n="form_cookies_link">Política de Cookies</a>
+                                        <span data-i18n="form_terms_text_part2">y los</span> 
+                                        <a href="#" onclick="openModal('legal'); return false;" class="text-bdir-blue hover:underline font-bold" data-i18n="form_legal_link">Términos Legales</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- BOTÓN ENVÍO -->
+                            <button id="submit-btn" type="submit" class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-bdir-blue hover:bg-[#007bb0] transition-colors">
+                                <span data-i18n="form_button">RESERVAR AHORA >></span>
+                            </button>
+                            <p class="text-xs text-center text-gray-400 mt-2" data-i18n="form_privacy">
+                                Tus datos se usan sólo para gestionar tu cita. No compartiremos tu información.
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Vista de Éxito -->
+                    <div id="success-view" class="hidden text-center py-10">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                            <i data-lucide="check-circle" class="h-8 w-8 text-green-600"></i>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-title" data-i18n="success_title">¡Reserva Confirmada!</h3>
+                        <p class="mt-2 text-sm text-gray-500" data-i18n="success_msg">
+                            Nos pondremos en contacto contigo muy pronto para agendar tu sesión inicial ELITE 90.
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- --- HERO / MAIN CTA SECTION (SIN BOTÓN DE WHATSAPP SUPERIOR) --- -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center">
-            <h1 class="text-5xl font-extrabold text-gray-900 sm:text-6xl md:text-7xl font-title leading-tight">
-                <span data-i18n="hero_title_1">El mejor centro de fitness</span>
-                <span class="block text-bdir-blue" data-i18n="hero_title_2">en Premià de Dalt.</span>
-            </h1>
-            <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto" data-i18n="hero_subtitle">
-                Entrenamiento personal, fisioterapia, nutrición y cuotas flexibles. ¡Empieza a transformar tu vida hoy!
-            </p>
-            <!-- SE HA ELIMINADO EL BOTÓN DE WHATSAPP AQUÍ -->
-        </div>
-    </main>
-    
-    <!-- --- SERVICES SECTION (Enlaces a Landing Pages) --- -->
-    <section class="py-16 bg-gray-50">
+    <!-- BENEFICIOS SECTION -->
+    <section class="py-16 bg-[#F5F5F5]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-12 font-title" data-i18n="services_title">
-                Nuestros Servicios Clave
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Tarjeta 1: Entrenamiento Personal -->
-                <a id="service-link-1" href="#" target="_blank" class="service-card bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-bdir-blue">
-                    <div class="p-6">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-bdir-blue mb-4">
-                            <i data-lucide="dumbbell" class="h-6 w-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-title" data-i18n="service_1_title">Entrenamiento Personal</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="service_1_desc">
-                            Programas 100% individualizados con fisioterapeutas y entrenadores titulados para resultados reales y seguros.
-                        </p>
-                    </div>
-                </a>
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    <span data-i18n="benefits_title_1">Lo que incluye ELITE 90</span> <br class="hidden sm:block"/>
+                    <span class="text-gray-500 text-2xl font-normal" data-i18n="benefits_title_2">Programa de transformación corporal</span>
+                </h2>
+            </div>
 
-                <!-- Tarjeta 2: Nutrición -->
-                <a id="service-link-2" href="#" target="_blank" class="service-card bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-bdir-blue">
-                    <div class="p-6">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-bdir-blue mb-4">
-                            <i data-lucide="apple" class="h-6 w-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-title" data-i18n="service_2_title">Asesoramiento Nutricional</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="service_2_desc">
-                            Planificación dietética para optimizar tu rendimiento, pérdida de peso o ganancia muscular. Enfocado en tus objetivos.
-                        </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 text-bdir-blue mb-6">
+                        <i data-lucide="dumbbell" class="h-8 w-8"></i>
                     </div>
-                </a>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-title" data-i18n="benefit_1_title">Entrenamientos Intensos</h3>
+                    <p class="text-gray-600 leading-relaxed" data-i18n="benefit_1_desc">
+                        2 sesiones semanales de 60 minutos en pequeño grupo (máximo 6 personas). Trabajo personalizado con seguimiento individual de tu progreso.
+                    </p>
+                </div>
 
-                <!-- Tarjeta 3: Fisioterapia -->
-                <a id="service-link-3" href="#" target="_blank" class="service-card bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-bdir-blue">
-                    <div class="p-6">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-bdir-blue mb-4">
-                            <i data-lucide="hand-heart" class="h-6 w-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-title" data-i18n="service_3_title">Fisioterapia Avanzada</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="service_3_desc">
-                            Prevención y tratamiento de lesiones. Recupera tu movilidad y entrena sin dolor con nuestros especialistas.
-                        </p>
+                <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 text-bdir-blue mb-6">
+                        <i data-lucide="apple" class="h-8 w-8"></i>
                     </div>
-                </a>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-title" data-i18n="benefit_2_title">Asesoría Nutricional</h3>
+                    <p class="text-gray-600 leading-relaxed" data-i18n="benefit_2_desc">
+                        Visita mensual con nuestra nutricionista especializada. Plan alimenticio personalizado para potenciar tus resultados de entrenamiento.
+                    </p>
+                </div>
 
-                <!-- Tarjeta 4: Promos Cuotas -->
-                <a id="service-link-4" href="#" target="_blank" class="service-card bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-bdir-blue">
-                    <div class="p-6">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-bdir-blue mb-4">
-                            <i data-lucide="badge-check" class="h-6 w-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-title" data-i18n="service_4_title">Promociones en Cuotas</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="service_4_desc">
-                            Consulta nuestras cuotas flexibles, adaptadas a tu horario y presupuesto. Entrena cuando y como quieras.
-                        </p>
+                <div class="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 text-bdir-blue mb-6">
+                        <i data-lucide="target" class="h-8 w-8"></i>
                     </div>
-                </a>
-
-                <!-- Tarjeta 5: Senior -->
-                <a id="service-link-5" href="#" target="_blank" class="service-card bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-bdir-blue">
-                    <div class="p-6">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-bdir-blue mb-4">
-                            <i data-lucide="users" class="h-6 w-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-title" data-i18n="service_5_title">Senior</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="service_5_desc">
-                            Programas adaptados para personas mayores, enfocados en movilidad, equilibrio y salud funcional.
-                        </p>
-                    </div>
-                </a>
-
-                <!-- Tarjeta 6: ELITE 90 (NUEVA - MISMO ESTILO) -->
-                <a id="service-link-6" href="#" target="_blank" class="service-card bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-bdir-blue">
-                    <div class="p-6">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-bdir-blue mb-4">
-                            <i data-lucide="zap" class="h-6 w-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-title" data-i18n="service_6_title">Programa ELITE 90</h3>
-                        <p class="text-gray-600 text-sm" data-i18n="service_6_desc">
-                            90 días que te cambiarán la vida. Entrena y come como se debe. Transformación garantizada.
-                        </p>
-                    </div>
-                </a>
-
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-title" data-i18n="benefit_3_title">Seguimiento Total</h3>
+                    <p class="text-gray-600 leading-relaxed" data-i18n="benefit_3_desc">
+                        Evaluación inicial, mediciones, composición corporal y reporte mensual de tu progreso. Objetivos claros y alcanzables en 90 días.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- --- CALL TO ACTION SECTION (Promociones - Aún usa WhatsApp) --- -->
-    <section id="promociones" class="py-20 bg-bdir-blue text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-extrabold sm:text-4xl mb-6 font-title" data-i18n="promo_cta_title">
-                ¡Empieza con nuestra Oferta de Bienvenida!
-            </h2>
-            <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto" data-i18n="promo_cta_desc">
-                Accede a una semana gratuita o a un descuento especial en tu primera cuota anual.
+    <!-- TESTIMONIAL -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-lg text-gray-500 font-medium mb-8 italic" data-i18n="social_proof_intro">
+                "Los resultados en 90 días fueron increíbles. Cambié mi cuerpo y mis hábitos."
             </p>
-            <!-- Este CTA sigue usando WhatsApp para contacto general/ofertas -->
-            <a id="promo-cta-link" href="#" target="_blank" class="inline-block bg-white py-4 px-10 border border-transparent rounded-full shadow-lg text-lg font-bold text-bdir-blue hover:bg-gray-50 transition-all transform hover:-translate-y-1 uppercase font-title">
-                <span data-i18n="promo_cta_btn">SOLICITAR INFORMACIÓN</span>
-            </a>
+            
+            <div class="bg-blue-50 rounded-2xl p-8 shadow-inner relative overflow-hidden">
+                <div class="absolute top-0 left-0 opacity-10 transform -translate-x-4 -translate-y-4">
+                    <i data-lucide="star" class="h-32 w-32 text-bdir-blue fill-current"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-center mb-4 space-x-1">
+                        <i data-lucide="star" class="h-6 w-6 text-yellow-400 fill-current"></i>
+                        <i data-lucide="star" class="h-6 w-6 text-yellow-400 fill-current"></i>
+                        <i data-lucide="star" class="h-6 w-6 text-yellow-400 fill-current"></i>
+                        <i data-lucide="star" class="h-6 w-6 text-yellow-400 fill-current"></i>
+                        <i data-lucide="star" class="h-6 w-6 text-yellow-400 fill-current"></i>
+                    </div>
+                    <blockquote class="text-xl text-gray-800 font-medium mb-6" data-i18n="testimonial_quote">
+                        "El ambiente en los entrenamientos es motivador, la nutricionista me ayudó a entender qué comer, y los resultados hablan por sí solos."
+                    </blockquote>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="h-12 w-12 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 font-bold">
+                            JM
+                        </div>
+                        <div class="text-left">
+                            <div class="font-bold text-gray-900">Jorge M.</div>
+                            <div class="text-sm text-gray-500">Premià de Dalt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- --- FOOTER (ESTILO OSCURO: bg-gray-900) --- -->
-    <footer class="bg-gray-900 border-t border-gray-700">
+    <!-- CTA FINAL -->
+    <section class="relative py-20 bg-bdir-blue">
+        <div class="absolute inset-0 overflow-hidden">
+             <div class="absolute -top-24 -left-24 w-96 h-96 bg-white opacity-10 rounded-full mix-blend-overlay blur-3xl"></div>
+             <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-900 opacity-20 rounded-full mix-blend-overlay blur-3xl"></div>
+        </div>
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-6" data-i18n="cta_final_title">
+                3 meses para transformar tu cuerpo y tu vida
+            </h2>
+            <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto" data-i18n="cta_final_desc">
+                Únete a nuestro próximo grupo ELITE 90. Plazas limitadas a 6 personas. Sesión inicial gratuita.
+            </p>
+            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="inline-block bg-white py-4 px-10 border border-transparent rounded-md shadow-lg text-lg font-bold text-bdir-blue hover:bg-gray-50 transition-colors">
+                <span data-i18n="cta_final_btn">RESERVAR MI SESIÓN INICIAL</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 border-t border-gray-800">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
-                    <!-- LOGO FOOTER (BDiR MARESME) - TEXTO BLANCO -->
-                    <a href="#" class="block cursor-pointer p-1 rounded-md hover:bg-gray-800 transition-colors">
-                        <div class="text-xl font-bold tracking-tighter text-bdir-blue font-title">
-                            BDiR <span class="font-light text-gray-300 ml-1 text-lg">Maresme</span>
-                        </div>
-                    </a>
+                    <div class="text-xl font-bold tracking-tighter text-bdir-blue font-title">
+                        BDiR <span class="font-light text-gray-400 ml-1 text-lg">Maresme</span>
+                    </div>
                 </div>
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-gray-300 text-sm">
-                     <!-- ENLACE DE DIRECCIÓN A GOOGLE MAPS -->
-                    <a href="https://www.google.com/maps/place/BDiR+Maresme/@41.5017127,2.3585388,17z/data=!3m2!4b1!5s0x12a4b6ca06a87c4f:0x3f1604cbb1de26a0!4m6!3m5!1s0x12a4b6c9f5bdc26f:0x30d3bea632480e1!8m2!3d41.5017127!4d2.3611137!16s%2Fg%2F11hctz10q0?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex items-center space-x-2 hover:text-bdir-blue transition-colors group cursor-pointer" aria-label="Abrir Google Maps con la dirección del gimnasio">
-                        <i data-lucide="map-pin" class="h-5 w-5 text-bdir-blue"></i>
-                        <span>Av. Pedrablanca S/N Local 7, Premià de Dalt</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=BDiR+Maresme" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 hover:text-bdir-blue transition-colors group cursor-pointer">
+                        <i data-lucide="map-pin" class="h-5 w-5 text-bdir-blue group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Av. Pedrablanca S/N Local 7</span>
                     </a>
                     <div class="flex items-center space-x-2">
                         <i data-lucide="phone" class="h-5 w-5 text-bdir-blue"></i>
                         <span>93 754 87 47</span>
                     </div>
-                    <!-- Enlace WhatsApp - General -->
-                    <a id="whatsapp-link-footer" href="#" target="_blank" class="flex items-center space-x-2 hover:text-bdir-blue transition-colors group">
+                    <a id="whatsapp-link" href="https://wa.me/34682334580?text=Quiero%20solicitar%20mi%20sesión%20inicial%20ELITE%2090" target="_blank" class="flex items-center space-x-2 hover:text-bdir-blue transition-colors group cursor-pointer">
                         <i data-lucide="message-circle" class="h-5 w-5 text-bdir-blue group-hover:scale-110 transition-transform"></i>
                         <span class="font-semibold">682 334 580</span>
                     </a>
                 </div>
             </div>
+            
             <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
-                <!-- Redes Sociales (Facebook e Instagram) - ICONOS BLANCOS/GRISES -->
                 <div class="flex space-x-6 md:order-3 mt-4 md:mt-0 justify-center md:justify-end">
                     <a href="https://www.facebook.com/bdirmaresme/?locale=es_ES" target="_blank" class="text-gray-500 hover:text-bdir-blue transition-colors">
                         <span class="sr-only">Facebook</span>
@@ -235,355 +363,362 @@
                     </a>
                 </div>
 
-                <!-- Enlaces Legales - TEXTO GRIS CLARO -->
-                <div class="flex space-x-6 md:order-2 justify-center mt-4 md:mt-0 text-sm">
-                    <a href="#" onclick="openLegalModal('privacy', event)" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer_privacy">Política de Privacidad</a>
-                    <a href="#" onclick="openLegalModal('cookies', event)" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer_cookies">Política de Cookies</a>
-                    <a href="#" onclick="openLegalModal('legal', event)" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer_legal">Aviso Legal</a>
+                <div class="flex space-x-6 md:order-2 justify-center mt-4 md:mt-0">
+                    <button type="button" onclick="openModal('privacidad')" class="text-gray-400 hover:text-gray-300 transition-colors" data-i18n="footer_privacy">Política de Privacidad</button>
+                    <button type="button" onclick="openModal('legal')" class="text-gray-400 hover:text-gray-300 transition-colors" data-i18n="footer_legal">Aviso Legal</button>
+                    <button type="button" onclick="openModal('cookies')" class="text-gray-400 hover:text-gray-300 transition-colors" data-i18n="footer_cookies">Política de Cookies</button>
                 </div>
 
-                <!-- Copyright - TEXTO GRIS OSCURO -->
                 <p class="mt-8 text-base text-gray-500 md:mt-0 md:order-1 text-center md:text-left" data-i18n="footer_rights">
-                    &copy; 2025 BDiR Maresme. Todos los derechos reservados.
+                    &copy; 2026 BDiR Maresme. Todos los derechos reservados.
                 </p>
             </div>
         </div>
     </footer>
-    
-    <!-- --- MODAL DE AVISOS LEGALES --- -->
-    <div id="legal-modal" class="fixed inset-0 hidden modal-overlay flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto transform transition-all">
-            <div class="p-6">
-                <!-- Header del Modal -->
-                <div class="flex justify-between items-center border-b pb-3 mb-4 sticky top-0 bg-white z-10">
-                    <h3 id="modal-title" class="text-2xl font-bold text-gray-900 font-title"></h3>
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                        <i data-lucide="x" class="h-6 w-6"></i>
-                    </button>
-                </div>
-                
-                <!-- Contenido del Modal -->
-                <div id="modal-content" class="text-gray-700 leading-relaxed text-sm">
-                    
-                    <!-- Contenido Aviso Legal -->
-                    <div id="legal-content" class="hidden">
-                        <h4 class="text-xl font-bold mb-3 mt-4 text-bdir-blue" data-i18n="legal_title">Aviso Legal de BDiR Maresme</h4>
-                        
-                        <h5 class="font-bold mt-4 text-lg" data-i18n="legal_section_1_title">1. Datos Identificativos del Titular</h5>
-                        <p class="text-sm italic text-gray-500" data-i18n="legal_section_1_intro">En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa de:</p>
-                        <ul class="list-disc list-inside ml-4 space-y-2 text-sm mt-2">
-                            <li data-i18n="legal_id_owner">Titular del Sitio Web: **[Nombre de la Empresa o Persona Física]**</li>
-                            <li data-i18n="legal_id_nif">NIF/CIF: **[Tu NIF/CIF]**</li>
-                            <li data-i18n="legal_id_address">Domicilio Social: **[Tu dirección completa]**</li>
-                            <li data-i18n="legal_id_email">Correo Electrónico: **[Tu Email de Contacto]**</li>
-                            <li data-i18n="legal_id_activity">Actividad: **Gestión de centros deportivos y fitness**</li>
-                        </ul>
 
-                        <h5 class="font-bold mt-6 text-lg" data-i18n="legal_section_2_title">2. Propiedad Intelectual e Industrial</h5>
-                        <p class="mb-4 text-sm" data-i18n="legal_section_2_content">BDiR Maresme, por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial del sitio web.</p>
-
-                        <h5 class="font-bold mt-6 text-lg" data-i18n="legal_section_3_title">3. Exclusión de Garantías y Responsabilidad</h5>
-                        <p class="mb-4 text-sm" data-i18n="legal_section_3_content">BDiR Maresme no se hace responsable de los daños y perjuicios que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos en los contenidos.</p>
-                    </div>
-
-                    <!-- Contenido Política de Privacidad -->
-                    <div id="privacy-content" class="hidden">
-                        <h4 class="text-xl font-bold mb-3 mt-4 text-bdir-blue" data-i18n="privacy_title">Política de Privacidad de BDiR Maresme</h4>
-                        
-                        <h5 class="font-bold mt-4 text-lg" data-i18n="privacy_section_1_title">1. Responsable del Tratamiento</h5>
-                        <p class="mb-4 text-sm" data-i18n="privacy_section_1_content">La entidad responsable del tratamiento de sus datos es **[Nombre de la Empresa o Persona Física, ejemplo: BDiR Maresme S.L.]**, con NIF/CIF **[Tu NIF/CIF]** y domicilio en **[Tu dirección completa]**. Para cualquier consulta, puede contactarnos en el correo electrónico: **[Tu Email de Contacto Legal, ejemplo: legal@bdirmaresme.com]**.</p>
-                        
-                        <h5 class="font-bold mt-6 text-lg" data-i18n="privacy_section_2_title">2. Datos Recabados y Finalidad</h5>
-                        <p class="mb-4 text-sm" data-i18n="privacy_section_2_content">Los datos recabados a través de formularios (si existieran) o contacto directo (nombre, email, teléfono) tienen como finalidad exclusiva la **gestión de la solicitud de información o contacto comercial** iniciada por el usuario.</p>
-
-                        <h5 class="font-bold mt-6 text-lg" data-i18n="privacy_section_3_title">3. Base Legal para el Tratamiento</h5>
-                        <p class="mb-4 text-sm" data-i18n="privacy_section_3_content">La base legal para el tratamiento es el **consentimiento** del interesado al contactarnos (Art. 6.1.a del RGPD).</p>
-                        
-                        <h5 class="font-bold mt-6 text-lg" data-i18n="privacy_section_4_title">4. Derechos del Usuario</h5>
-                        <p class="mb-4 text-sm" data-i18n="privacy_section_4_content">Usted tiene derecho a ejercer sus derechos de Acceso, Rectificación, Supresión, Oposición, Limitación del Tratamiento y Portabilidad. Puede ejercer estos derechos enviando un correo a **[Tu Email de Contacto Legal]** adjuntando copia de su DNI.</p>
-                    </div>
-
-                    <!-- Contenido Política de Cookies -->
-                    <div id="cookies-content" class="hidden">
-                        <h4 class="text-xl font-bold mb-3 mt-4 text-bdir-blue" data-i18n="cookies_title">Política de Cookies de BDiR Maresme</h4>
-                        <p class="mb-4" data-i18n="cookies_intro">El sitio web utiliza cookies para mejorar la experiencia del usuario.</p>
-                        
-                        <h5 class="font-bold mt-4" data-i18n="cookies_section_1_title">1. ¿Qué son las Cookies?</h5>
-                        <p class="mb-4" data-i18n="cookies_section_1_content">Una cookie es un pequeño fichero de texto que se descarga en el equipo del usuario al acceder a determinadas páginas web. Permiten almacenar y recuperar información sobre los hábitos de navegación de un usuario.</p>
-                        
-                        <h5 class="font-bold mt-4" data-i18n="cookies_section_2_title">2. Cookies Utilizadas</h5>
-                        <p class="mb-2" data-i18n="cookies_section_2_content_intro">Este sitio web utiliza o podría utilizar:</p>
-                        <ul class="list-disc list-inside ml-4 space-y-2">
-                            <li data-i18n="cookies_type_tech">**Cookies técnicas:** Necesarias para el correcto funcionamiento de la web.</li>
-                            <li data-i18n="cookies_type_anal">**Cookies de análisis:** Permiten cuantificar el número de usuarios y medir la actividad de la web.</li>
-                        </ul>
-                        
-                        <h5 class="font-bold mt-4" data-i18n="cookies_section_3_title">3. Consentimiento y Desactivación</h5>
-                        <p data-i18n="cookies_section_3_content">Al navegar, usted acepta el uso de las cookies en las condiciones contenidas en esta Política. Puede revocar el consentimiento y modificar la configuración de las cookies en cualquier momento a través de la configuración de su navegador.</p>
-                    </div>
-                </div>
+    <!-- MODAL -->
+    <div id="legalModal" class="modal-overlay fixed inset-0 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 sm:p-8">
+            <div class="flex justify-between items-start mb-4 border-b pb-3">
+                <h2 id="modalTitle" class="text-2xl font-bold text-gray-900">Título</h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-700 transition duration-150">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="modalContent" class="text-sm text-gray-600 space-y-4"></div>
+            <div class="flex justify-end pt-6">
+                <button onclick="closeModal()" class="py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 transition duration-150">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT: LOGICA + TRADUCCIONES -->
+    <!-- JAVASCRIPT COMPLETO -->
     <script>
-        // Número de WhatsApp del centro de fitness
-        const WHATSAPP_NUMBER = '34682334580'; 
+        const BDIR_HOME_URL = 'https://cmbdirmaresme-bot.github.io/landing-bdir-home/#';
         
-        // URLs de las landing pages específicas (NO son de WhatsApp)
-        const LANDING_URLS = {
-            service_1: "https://cmbdirmaresme-bot.github.io/landing-bdir-maresmeEP/",
-            service_2: "https://cmbdirmaresme-bot.github.io/landing-bdir-nutricion/",
-            service_3: "https://cmbdirmaresme-bot.github.io/landing-bdir-fisioterapia/",
-            service_4: "https://cmbdirmaresme-bot.github.io/landing-bdir-maresme-Promos-cuotas/",
-            service_5: "https://cmbdirmaresme-bot.github.io/seniors/",
-            service_6: "https://cmbdirmaresme-bot.github.io/landing-bdir-elite-90/"
-        };
+        function redirectToHome() {
+            window.location.href = BDIR_HOME_URL;
+        }
 
-        // Diccionario de Traducciones
         const translations = {
             es: {
-                // Texts for the main page
-                hero_title_1: "El mejor centro de fitness",
-                hero_title_2: "en Premià de Dalt.",
-                hero_subtitle: "Entrenamiento personal, fisioterapia, nutrición y cuotas flexibles. ¡Empieza a transformar tu vida hoy!",
-                // main_cta: "CONTACTAR POR WHATSAPP", // Ya no se usa
-                services_title: "Nuestros Servicios Clave",
-                service_1_title: "Entrenamiento Personal",
-                service_1_desc: "Programas 100% individualizados con fisioterapeutas y entrenadores titulados para resultados reales y seguros.",
-                service_2_title: "Asesoramiento Nutricional",
-                service_2_desc: "Planificación dietética para optimizar tu rendimiento, pérdida de peso o ganancia muscular. Enfocado en tus objetivos.",
-                service_3_title: "Fisioterapia Avanzada",
-                service_3_desc: "Prevención y tratamiento de lesiones. Recupera tu movilidad y entrena sin dolor con nuestros especialistas.",
-                service_4_title: "Promociones en Cuotas",
-                service_4_desc: "Consulta nuestras cuotas flexibles, adaptadas a tu horario y presupuesto. Entrena cuando y como quieras.",
-                service_5_title: "Senior",
-                service_5_desc: "Programas adaptados para personas mayores, enfocados en movilidad, equilibrio y salud funcional.",
-                service_6_title: "Programa ELITE 90",
-                service_6_desc: "90 días que te cambiarán la vida. Entrena y come como se debe. Transformación garantizada.",
-                promo_cta_title: "¡Empieza con nuestra Oferta de Bienvenida!",
-                promo_cta_desc: "Accede a una semana gratuita o a un descuento especial en tu primera cuota anual.",
-                promo_cta_btn: "SOLICITAR INFORMACIÓN",
-
-                // WhatsApp Messages (Specific to the link)
-                whatsapp_message_general: "Hola, me gustaría saber más sobre BDiR Maresme y sus servicios generales.",
-                whatsapp_message_service_4: "Hola, me gustaría consultar las Promociones en Cuotas flexibles de BDiR Maresme. ¿Cuáles son las ofertas actuales?",
-
-                // Footer & Modal Texts
+                hero_title_1: "Transforma tu cuerpo",
+                hero_title_2: "Programa ELITE 90 - 3 meses de cambio real",
+                hero_subtitle: "2 entrenamientos por semana en small group training (máximo 6 personas) + asesoría nutricional mensual. Resultados comprobados en 90 días.",
+                label_contact_method: "¿Cómo prefieres que te contactemos?",
+                option_phone: "Teléfono",
+                option_whatsapp: "WhatsApp",
+                option_email: "Email",
+                form_title: "Reserva tu Sesión Inicial",
+                form_subtitle: "Completa el formulario y te contactaremos para agendar tu primera sesión ELITE 90 sin compromiso.",
+                form_terms_text_part1: "He leído y acepto la",
+                form_privacy_link: "Política de Privacidad",
+                form_cookies_link: "Política de Cookies",
+                form_terms_text_part2: "y los",
+                form_legal_link: "Términos Legales",
+                form_button: "RESERVAR AHORA >>",
+                form_sending: "ENVIANDO...",
+                form_privacy: "Tus datos se usan sólo para gestionar tu cita. No compartiremos tu información.",
+                success_title: "¡Reserva Confirmada!",
+                success_msg: "Nos pondremos en contacto contigo muy pronto para agendar tu sesión inicial ELITE 90.",
+                error_title: "¡Error de Envío!",
+                error_msg: "Por favor, rellena todos los campos correctamente.",
+                benefits_title_1: "Lo que incluye ELITE 90",
+                benefits_title_2: "Programa de transformación corporal",
+                benefit_1_title: "Entrenamientos Intensos",
+                benefit_1_desc: "2 sesiones semanales de 60 minutos en pequeño grupo (máximo 6 personas). Trabajo personalizado con seguimiento individual de tu progreso.",
+                benefit_2_title: "Asesoría Nutricional",
+                benefit_2_desc: "Visita mensual con nuestra nutricionista especializada. Plan alimenticio personalizado para potenciar tus resultados de entrenamiento.",
+                benefit_3_title: "Seguimiento Total",
+                benefit_3_desc: "Evaluación inicial, mediciones, composición corporal y reporte mensual de tu progreso. Objetivos claros y alcanzables en 90 días.",
+                social_proof_intro: "\"Los resultados en 90 días fueron increíbles. Cambié mi cuerpo y mis hábitos.\"",
+                testimonial_quote: "\"El ambiente en los entrenamientos es motivador, la nutricionista me ayudó a entender qué comer, y los resultados hablan por sí solos.\"",
+                cta_final_title: "3 meses para transformar tu cuerpo y tu vida",
+                cta_final_desc: "Únete a nuestro próximo grupo ELITE 90. Plazas limitadas a 6 personas. Sesión inicial gratuita.",
+                cta_final_btn: "RESERVAR MI SESIÓN INICIAL",
                 footer_privacy: "Política de Privacidad",
-                footer_cookies: "Política de Cookies",
                 footer_legal: "Aviso Legal",
-                footer_rights: "&copy; 2025 BDiR Maresme. Todos los derechos reservados.",
-                
-                // [AVISO LEGAL, PRIVACIDAD, COOKIES CONTENT - TEXTOS LARGOS]
-                legal_title: "Aviso Legal de BDiR Maresme",
-                legal_section_1_title: "1. Datos Identificativos del Titular",
-                legal_section_1_intro: "En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa de:",
-                legal_id_owner: "Titular del Sitio Web: **[Nombre de la Empresa o Persona Física]**",
-                legal_id_nif: "NIF/CIF: **[Tu NIF/CIF]**",
-                legal_id_address: "Domicilio Social: **[Tu dirección completa]**",
-                legal_id_email: "Correo Electrónico: **[Tu Email de Contacto]**",
-                legal_id_activity: "Actividad: **Gestión de centros deportivos y fitness**",
-                legal_section_2_title: "2. Propiedad Intelectual e Industrial",
-                legal_section_2_content: "BDiR Maresme, por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial del sitio web.",
-                legal_section_3_title: "3. Exclusión de Garantías y Responsabilidad",
-                legal_section_3_content: "BDiR Maresme no se hace responsable de los daños y perjuicios que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos en los contenidos.",
-
-                privacy_title: "Política de Privacidad de BDiR Maresme",
-                privacy_section_1_title: "1. Responsable del Tratamiento",
-                privacy_section_1_content: "La entidad responsable del tratamiento de sus datos es **[Nombre de la Empresa o Persona Física, ejemplo: BDiR Maresme S.L.]**, con NIF/CIF **[Tu NIF/CIF]** y domicilio en **[Tu dirección completa]**. Para cualquier consulta, puede contactarnos en el correo electrónico: **[Tu Email de Contacto Legal, ejemplo: legal@bdirmaresme.com]**.",
-                privacy_section_2_title: "2. Datos Recabados y Finalidad",
-                privacy_section_2_content: "Los datos recabados a través de formularios (si existieran) o contacto directo (nombre, email, teléfono) tienen como finalidad exclusiva la **gestión de la solicitud de información o contacto comercial** iniciada por el usuario.",
-                privacy_section_3_title: "3. Base Legal para el Tratamiento",
-                privacy_section_3_content: "La base legal para el tratamiento es el **consentimiento** del interesado al contactarnos (Art. 6.1.a del RGPD).",
-                privacy_section_4_title: "4. Derechos del Usuario",
-                privacy_section_4_content: "Usted tiene derecho a ejercer sus derechos de Acceso, Rectificación, Supresión, Oposición, Limitación del Tratamiento y Portabilidad. Puede ejercer estos derechos enviando un correo a **[Tu Email de Contacto Legal]** adjuntando copia de su DNI.",
-                
-                cookies_title: "Política de Cookies de BDiR Maresme",
-                cookies_intro: "El sitio web utiliza cookies para mejorar la experiencia del usuario.",
-                cookies_section_1_title: "1. ¿Qué son las Cookies?",
-                cookies_section_1_content: "Una cookie es un pequeño fichero de texto que se descarga en el equipo del usuario al acceder a determinadas páginas web. Permiten almacenar y recuperar información sobre los hábitos de navegación de un usuario.",
-                cookies_section_2_title: "2. Cookies Utilizadas",
-                cookies_section_2_content_intro: "Este sitio web utiliza o podría utilizar:",
-                cookies_type_tech: "**Cookies técnicas:** Necesarias para el correcto funcionamiento de la web.",
-                cookies_type_anal: "**Cookies de análisis:** Permiten cuantificar el número de usuarios y medir la actividad de la web.",
-                cookies_section_3_title: "3. Consentimiento y Desactivación",
-                cookies_section_3_content: "Al navegar, usted acepta el uso de las cookies en las condiciones contenidas en esta Política. Puede revocar el consentimiento y modificar la configuración de las cookies en cualquier momento a través de la configuración de su navegador.",
+                footer_cookies: "Política de Cookies",
+                footer_rights: "&copy; 2026 BDiR Maresme. Todos los derechos reservados.",
+                whatsapp_message: "Quiero solicitar mi sesión inicial ELITE 90",
+                modal_title_legal: "Aviso Legal",
+                modal_title_privacy: "Política de Privacidad",
+                modal_title_cookies: "Política de Cookies"
             },
             ca: {
-                // Texts for the main page (Catalan)
-                hero_title_1: "El millor centre de fitness",
-                hero_title_2: "a Premià de Dalt.",
-                hero_subtitle: "Entrenament personal, fisioteràpia, nutrició i quotes flexibles. Comença a transformar la teva vida avui!",
-                // main_cta: "CONTACTAR PER WHATSAPP", // Ya no se usa
-                services_title: "Els nostres Serveis Clau",
-                service_1_title: "Entrenament Personal",
-                service_1_desc: "Programes 100% individualitzats amb fisioterapeutes i entrenadors titulats per a resultats reals i segurs.",
-                service_2_title: "Assessorament Nutricional",
-                service_2_desc: "Planificació dietètica per optimitzar el teu rendiment, pèrdua de pes o guany muscular. Enfocat als teus objectius.",
-                service_3_title: "Fisioteràpia Avançada",
-                service_3_desc: "Prevenció i tractament de lesions. Recupera la teva mobilitat i entrena sense dolor amb els nostres especialistes.",
-                service_4_title: "Promocions en Quotes",
-                service_4_desc: "Consulta les nostres quotes flexibles, adaptades al teu horari i pressupost. Entrena quan i com vulguis.",
-                service_5_title: "Senior",
-                service_5_desc: "Programes adaptats per a persones majors, centrats en mobilitat, equilibri i salut funcional.",
-                service_6_title: "Programa ELITE 90",
-                service_6_desc: "90 dies que et canviaran la vida. Entrena i menja com es degut. Transformació garantida.",
-                promo_cta_title: "Comença amb la nostra Oferta de Benvinguda!",
-                promo_cta_desc: "Accedeix a una setmana gratuïta o a un descompte especial en la teva primera quota anual.",
-                promo_cta_btn: "SOL·LICITAR INFORMACIÓ",
-
-                // WhatsApp Messages (Specific to the link)
-                whatsapp_message_general: "Hola, m'agradaria saber més sobre BDiR Maresme i els seus serveis generals.",
-                whatsapp_message_service_4: "Hola, m'agradaria consultar les Promocions en Quotes flexibles de BDiR Maresme. Quines són les ofertes actuals?",
-
-                // Footer & Modal Texts (Catalan)
+                hero_title_1: "Transforma el teu cos",
+                hero_title_2: "Programa ELITE 90 - 3 mesos de canvi real",
+                hero_subtitle: "2 entrenaments per setmana en small group training (màxim 6 persones) + assessoria nutricional mensual. Resultats comprovats en 90 dies.",
+                label_contact_method: "Com prefereixes que et contactem?",
+                option_phone: "Telèfon",
+                option_whatsapp: "WhatsApp",
+                option_email: "Email",
+                form_title: "Reserva la teva Sessió Inicial",
+                form_subtitle: "Completa el formulari i et contactarem per agendar la teva primera sessió ELITE 90 sense compromís.",
+                form_terms_text_part1: "He llegit i accepto la",
+                form_privacy_link: "Política de Privacitat",
+                form_cookies_link: "Política de Cookies",
+                form_terms_text_part2: "i els",
+                form_legal_link: "Termes Legals",
+                form_button: "RESERVAR ARA >>",
+                form_sending: "ENVIANT...",
+                form_privacy: "Les teves dades s'utilitzen només per gestionar la teva cita. No compartirem la informació.",
+                success_title: "¡Reserva Confirmada!",
+                success_msg: "Ens posarem en contacte amb tu molt aviat per agendar la teva sessió inicial ELITE 90.",
+                error_title: "Error d'Enviament!",
+                error_msg: "Si us plau, omple tots els camps correctament.",
+                benefits_title_1: "Què inclou ELITE 90",
+                benefits_title_2: "Programa de transformació corporal",
+                benefit_1_title: "Entrenaments Intensos",
+                benefit_1_desc: "2 sessions setmanals de 60 minuts en petit grup (màxim 6 persones). Treball personalitzat amb seguiment individual del teu progrés.",
+                benefit_2_title: "Assessoria Nutricional",
+                benefit_2_desc: "Visita mensual amb la nostra nutricionista especialitzada. Pla alimentari personalitzat per potenciar els teus resultats d'entrenament.",
+                benefit_3_title: "Seguiment Total",
+                benefit_3_desc: "Avaluació inicial, mesuraments, composició corporal i informe mensual del teu progrés. Objectius clars i assolibles en 90 dies.",
+                social_proof_intro: "\"Els resultats en 90 dies van ser increïbles. Vaig canviar el meu cos i els meus hàbits.\"",
+                testimonial_quote: "\"L'ambient en els entrenaments és motivador, la nutricionista em va ajudar a entendre què menjar, i els resultats parlen per si sols.\"",
+                cta_final_title: "3 mesos per transformar el teu cos i la teva vida",
+                cta_final_desc: "Uneix-te al nostre pròxim grup ELITE 90. Places limitades a 6 persones. Primera sessió gratuïta.",
+                cta_final_btn: "RESERVAR LA MEVA SESSIÓ INICIAL",
                 footer_privacy: "Política de Privacitat",
-                footer_cookies: "Política de Galetes",
                 footer_legal: "Avís Legal",
-                footer_rights: "&copy; 2025 BDiR Maresme. Tots els drets reservats.",
-
-                // [AVISO LEGAL, PRIVACIDAD, COOKIES CONTENT - TEXTOS LARGOS EN CATALÁN]
-                legal_title: "Avís Legal de BDiR Maresme",
-                legal_section_1_title: "1. Dades Identificatives del Titular",
-                legal_section_1_intro: "En compliment amb el deure d'informació recollit a l'article 10 de la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la Informació i del Comerç Electrònic (LSSI-CE), s'informa de:",
-                legal_id_owner: "Titular del Lloc Web: **[Nom de l'Empresa o Persona Física]**",
-                legal_id_nif: "NIF/CIF: **[El teu NIF/CIF]**",
-                legal_id_address: "Domicili Social: **[La teva adreça completa]**",
-                legal_id_email: "Correu Electrònic: **[El teu Correu Electrònic de Contacte]**",
-                legal_id_activity: "Activitat: **Gestió de centres esportius i fitness**",
-                legal_section_2_title: "2. Propietat Intel·lectual i Industrial",
-                legal_section_2_content: "BDiR Maresme, per si o com a cessionària, és titular de tots els drets de propietat intel·lectual i industrial del lloc web.",
-                legal_section_3_title: "3. Exclusió de Garanties i Responsabilitat",
-                legal_section_3_content: "BDiR Maresme no es fa responsable dels danys i perjudicis que puguin ocasionar, a títol enunciatiu: errors o omissions en els continguts, manca de disponibilitat del portal o la transmissió de virus o programes maliciosos en els continguts.",
-
-                privacy_title: "Política de Privacitat de BDiR Maresme",
-                privacy_section_1_title: "1. Responsable del Tractament",
-                privacy_section_1_content: "L'entitat responsable del tractament de les seves dades és **[Nom de l'Empresa o Persona Física, exemple: BDiR Maresme S.L.]**, amb NIF/CIF **[El teu NIF/CIF]** i domicili a **[La teva adreça completa]**. Per a qualsevol consulta, pot contactar-nos al correu electrònic: **[El teu Correu Electrònic de Contacte Legal, exemple: legal@bdirmaresme.com]**.",
-                privacy_section_2_title: "2. Dades Recollides i Finalitat",
-                privacy_section_2_content: "Les dades recollides a través de formularis (si existissin) o contacte directe (nom, email, telèfon) tenen com a finalitat exclusiva la **gestió de la sol·licitud d'informació o contacte comercial** iniciada per l'usuari.",
-                privacy_section_3_title: "3. Base Legal per al Tractament",
-                privacy_section_3_content: "La base legal per al tractament és el **consentiment** de l'interessat en contactar-nos (Art. 6.1.a del RGPD).",
-                privacy_section_4_title: "4. Drets de l'Usuari",
-                privacy_section_4_content: "Vostè té dret a exercir els seus drets d'Accés, Rectificació, Supressió, Oposició, Limitació del Tractament i Portabilitat. Pot exercir aquests drets enviant un correu a **[El teu Correu Electrònic de Contacte Legal]** adjuntant còpia del seu DNI.",
-                
-                cookies_title: "Política de Galetes de BDiR Maresme",
-                cookies_intro: "El lloc web utilitza galetes per millorar l'experiència de l'usuari.",
-                cookies_section_1_title: "1. Què són les Galetes (Cookies)?",
-                cookies_section_1_content: "Una galeta és un petit fitxer de text que es descarrega a l'equip de l'usuari en accedir a determinades pàgines web. Permeten emmagatzemar i recuperar informació sobre els hàbits de navegació d'un usuari.",
-                cookies_section_2_title: "2. Galetes Utilitzades",
-                cookies_section_2_content_intro: "Aquest lloc web utilitza o podria utilitzar:",
-                cookies_type_tech: "**Galetes tècniques:** Necessàries per al correcte funcionament del web.",
-                cookies_type_anal: "**Galetes d'anàlisi:** Permeten quantificar el nombre d'usuaris i mesurar l'activitat del web.",
-                cookies_section_3_title: "3. Consentiment i Desactivació",
-                cookies_section_3_content: "En navegar, vostè accepta l'ús de les galetes en les condicions contingudes en aquesta Política. Pot revocar el consentiment i modificar la configuració de les galetes en qualsevol moment a través de la configuració del seu navegador.",
+                footer_cookies: "Política de Galetes",
+                footer_rights: "&copy; 2026 BDiR Maresme. Tots els drets reservats.",
+                whatsapp_message: "Vull sol·licitar la meva sessió inicial ELITE 90",
+                modal_title_legal: "Avís Legal",
+                modal_title_privacy: "Política de Privacitat",
+                modal_title_cookies: "Política de Galetes"
             }
         };
 
-        // Función para construir el enlace de WhatsApp
-        function createWhatsappLink(messageKey, lang) {
-            const message = translations[lang][messageKey] || translations['es'][messageKey];
-            const encodedMessage = encodeURIComponent(message);
-            return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-        }
-
-        // Función para cambiar el idioma y actualizar todos los enlaces
-        function changeLanguage(lang) {
-            // A. Actualizar todos los textos con data-i18n
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key]; 
-                }
-            });
-
-            // B. Actualizar los enlaces
-            const generalMessageKey = 'whatsapp_message_general';
-            const promoMessageKey = 'whatsapp_message_service_4'; 
-
-            // 1. CTA Principal (Hero) - ELIMINADO
-
-            // 2. Tarjetas de Servicio (SON ENLACES EXTERNOS A LANDING PAGES)
-            document.getElementById('service-link-1').href = LANDING_URLS.service_1; // Entrenamiento Personal
-            document.getElementById('service-link-2').href = LANDING_URLS.service_2; // Nutrición
-            document.getElementById('service-link-3').href = LANDING_URLS.service_3; // Fisioterapia
-            document.getElementById('service-link-4').href = LANDING_URLS.service_4; // Promos Cuotas
-            document.getElementById('service-link-5').href = LANDING_URLS.service_5; // Senior
-            document.getElementById('service-link-6').href = LANDING_URLS.service_6; // ELITE 90
-
-            // 3. CTA Promociones (Sección Azul) USA WHATSAPP
-            document.getElementById('promo-cta-link').href = createWhatsappLink(promoMessageKey, lang);
-            
-            // 4. Enlace General del Footer USA WHATSAPP
-            document.getElementById('whatsapp-link-footer').href = createWhatsappLink(generalMessageKey, lang);
-            
-            // C. Actualizar botones activos y lang
-            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-            document.getElementById('btn-ca').classList.toggle('active', lang === 'ca');
-            document.documentElement.lang = lang;
-        }
-
-        // Funciones para el Modal de Avisos Legales
-        function openLegalModal(type, event) {
-            if (event) event.preventDefault(); 
-            
-            const modal = document.getElementById('legal-modal');
-            const title = document.getElementById('modal-title');
-            
-            // Ocultar todos los contenidos y restablecer el título
-            document.getElementById('legal-content').classList.add('hidden');
-            document.getElementById('privacy-content').classList.add('hidden');
-            document.getElementById('cookies-content').classList.add('hidden');
-            title.textContent = '';
-            
-            // Mostrar el contenido correcto y establecer el título
-            const lang = document.documentElement.lang;
-            
-            switch (type) {
-                case 'legal':
-                    document.getElementById('legal-content').classList.remove('hidden');
-                    title.textContent = translations[lang]['footer_legal'];
-                    break;
-                case 'privacy':
-                    document.getElementById('privacy-content').classList.remove('hidden');
-                    title.textContent = translations[lang]['footer_privacy'];
-                    break;
-                case 'cookies':
-                    document.getElementById('cookies-content').classList.remove('hidden');
-                    title.textContent = translations[lang]['footer_cookies'];
-                    break;
+        const policies = {
+            privacidad: {
+                title: "Política de Privacidad de BDiR Maresme",
+                content: `
+                    <div class="policy-section">
+                        <h3>1. Responsable del Tratamiento</h3>
+                        <p>La entidad responsable del tratamiento de sus datos es <strong>SIX MENDO SL</strong> con CIF <strong>B65318644</strong> y domicilio en <strong>Av Pedrablanca S/N L7 Premia de Dalt</strong>. Para cualquier consulta, puede contactarnos en el correo electrónico: <strong>bdirmaresme@dir.cat</strong></p>
+                    </div>
+                    <div class="policy-section">
+                        <h3>2. Datos Recabados y Finalidad</h3>
+                        <p>Los datos recabados a través de formularios (si existieran) o contacto directo (nombre, email, teléfono) tienen como finalidad exclusiva la <strong>gestión de la solicitud de información o contacto comercial</strong> iniciada por el usuario.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h3>3. Base Legal para el Tratamiento</h3>
+                        <p>La base legal para el tratamiento es el <strong>consentimiento</strong> del interesado al contactarnos (Art. 6.1.a del RGPD).</p>
+                    </div>
+                    <div class="policy-section">
+                        <h3>4. Derechos del Usuario</h3>
+                        <p>Usted tiene derecho a ejercer sus derechos de Acceso, Rectificación, Supresión, Oposición, Limitación del Tratamiento y Portabilidad. Puede ejercer estos derechos enviando un correo <strong>bdirmaresme@dir.cat</strong> adjuntando copia de su DNI.</p>
+                    </div>
+                `
+            },
+            legal: {
+                title: "Aviso Legal de BDiR Maresme",
+                content: `
+                    <div class="policy-section">
+                        <h3>1. Datos Identificativos del Titular</h3>
+                        <p>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa de:</p>
+                        <ul>
+                            <li><strong>Titular del Sitio Web:</strong> SIX MENDO SL</li>
+                            <li><strong>NIF/CIF:</strong> B65318644</li>
+                            <li><strong>Domicilio Social:</strong> Av Pedrablanca S/N L7 Premia de Dalt</li>
+                            <li><strong>Correo Electrónico:</strong> bdirmaresme@dir.cat</li>
+                            <li><strong>Actividad:</strong> Gestión de centros deportivos y fitness</li>
+                        </ul>
+                    </div>
+                    <div class="policy-section">
+                        <h3>2. Propiedad Intelectual e Industrial</h3>
+                        <p>BDiR Maresme, por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial del sitio web.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h3>3. Exclusión de Garantías y Responsabilidad</h3>
+                        <p>BDiR Maresme no se hace responsable de los daños y perjuicios que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos en los contenidos.</p>
+                    </div>
+                `
+            },
+            cookies: {
+                title: "Política de Cookies de BDiR Maresme",
+                content: `
+                    <div class="policy-section">
+                        <p>El sitio web utiliza cookies para mejorar la experiencia del usuario.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h3>1. ¿Qué son las Cookies?</h3>
+                        <p>Una cookie es un pequeño fichero de texto que se descarga en el equipo del usuario al acceder a determinadas páginas web. Permiten almacenar y recuperar información sobre los hábitos de navegación de un usuario.</p>
+                    </div>
+                    <div class="policy-section">
+                        <h3>2. Cookies Utilizadas</h3>
+                        <p>Este sitio web utiliza o podría utilizar:</p>
+                        <ul>
+                            <li><strong>Cookies técnicas:</strong> Necesarias para el correcto funcionamiento de la web.</li>
+                            <li><strong>Cookies de análisis:</strong> Permiten cuantificar el número de usuarios y medir la actividad de la web.</li>
+                        </ul>
+                    </div>
+                    <div class="policy-section">
+                        <h3>3. Consentimiento y Desactivación</h3>
+                        <p>Al navegar, usted acepta el uso de las cookies en las condiciones contenidas en esta Política. Puede revocar el consentimiento y modificar la configuración de las cookies en cualquier momento a través de la configuración de su navegador.</p>
+                    </div>
+                `
             }
+        };
 
-            // Mostrar el modal
-            modal.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden'); // Evita el scroll del cuerpo
-            
-            // Re-aplicar traducciones al modal y recrear iconos
-            changeLanguage(lang); 
-            lucide.createIcons();
+        const modal = document.getElementById('legalModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal(policyType) {
+            const policy = policies[policyType];
+            if (policy) {
+                modalTitle.textContent = policy.title;
+                modalContent.innerHTML = policy.content;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                const modalInner = document.querySelector('#legalModal > div');
+                if (modalInner) modalInner.scrollTop = 0;
+            }
         }
 
         function closeModal() {
-            document.getElementById('legal-modal').classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
         }
-        
-        // Cierre del modal con la tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !document.getElementById('legal-modal').classList.contains('hidden')) {
-                closeModal();
+
+        // FUNCIÓN: Actualizar campos según SELECT
+        function updateContactFields(method) {
+            const fieldNombre = document.getElementById('fieldNombre');
+            const fieldTelefono = document.getElementById('fieldTelefono');
+            const fieldEmail = document.getElementById('fieldEmail');
+
+            const inputNombre = document.getElementById('nombre');
+            const inputTelefono = document.getElementById('telefono');
+            const inputEmail = document.getElementById('email');
+
+            // 1. Ocultar todo
+            fieldNombre.classList.add('hidden');
+            fieldTelefono.classList.add('hidden');
+            fieldEmail.classList.add('hidden');
+
+            // 2. Mostrar según el método elegido
+            if (method === 'Telefono' || method === 'WhatsApp') {
+                fieldNombre.classList.remove('hidden');
+                inputNombre.focus();
+                fieldTelefono.classList.remove('hidden');
+            } else if (method === 'Email') {
+                fieldNombre.classList.remove('hidden');
+                inputNombre.focus();
+                fieldEmail.classList.remove('hidden');
+            }
+        }
+
+        // LÓGICA DE TRADUCCIÓN
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (t[key]) {
+                    element.innerHTML = t[key];
+                }
+            });
+
+            // Actualizar opciones del select
+            const contactSelect = document.getElementById('contact_method');
+            if (contactSelect) {
+                contactSelect.options[0].textContent = t['label_contact_method'];
+                contactSelect.options[1].textContent = t.option_phone;
+                contactSelect.options[2].textContent = t.option_whatsapp;
+                contactSelect.options[3].textContent = t.option_email;
+            }
+
+            // Actualizar enlace de WhatsApp
+            const whatsappLink = document.getElementById('whatsapp-link');
+            if (whatsappLink) {
+                whatsappLink.href = `https://wa.me/34682334580?text=${encodeURIComponent(t.whatsapp_message)}`;
+            }
+        }
+
+        function updateLangButtons(lang) {
+            document.getElementById('btn-es').classList.remove('active');
+            document.getElementById('btn-ca').classList.remove('active');
+            document.getElementById(`btn-${lang}`).classList.add('active');
+        }
+
+        function changeLanguage(lang) {
+            applyTranslations(lang);
+            updateLangButtons(lang);
+            document.documentElement.lang = lang;
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // MANEJO DEL FORMULARIO
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('es');
+            
+            const mainForm = document.getElementById('main-form');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            mainForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Validar que todos los campos requeridos estén completos
+                const contactMethod = document.getElementById('contact_method').value;
+                const nombre = document.getElementById('nombre').value;
+                const terms = document.getElementById('terms').checked;
+                
+                if (!contactMethod || !nombre || !terms) {
+                    alert('Por favor completa todos los campos');
+                    return;
+                }
+                
+                // Mostrar estado de envío
+                submitBtn.disabled = true;
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="spinner"></span>Enviando...';
+                
+                try {
+                    // Enviar el formulario
+                    const response = await fetch(mainForm.action, {
+                        method: 'POST',
+                        body: new FormData(mainForm)
+                    });
+                    
+                    // Mostrar vista de éxito
+                    document.getElementById('form-view').classList.add('hidden');
+                    document.getElementById('success-view').classList.remove('hidden');
+                    
+                    // Reiniciar el formulario después de 3 segundos
+                    setTimeout(() => {
+                        mainForm.reset();
+                        document.getElementById('form-view').classList.remove('hidden');
+                        document.getElementById('success-view').classList.add('hidden');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                        updateContactFields('');
+                    }, 3000);
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                    alert('Error al enviar el formulario. Intenta de nuevo.');
+                }
+            });
+            
+            const contactSelect = document.getElementById('contact_method');
+            if (contactSelect) {
+                contactSelect.addEventListener('change', function() {
+                    updateContactFields(this.value);
+                });
+            }
+            
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
             }
         });
-
-        // Inicialización: Aplicar idioma por defecto al cargar
-        document.addEventListener('DOMContentLoaded', () => {
-            // Aseguramos que la función de iconos se ejecute antes de cambiar el idioma
-            lucide.createIcons();
-            // Esto también llama a changeLanguage('es') y actualiza todos los CTAs
-            changeLanguage('es'); 
-        });
     </script>
+
 </body>
 </html>
