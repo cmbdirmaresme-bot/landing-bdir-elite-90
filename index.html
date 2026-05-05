@@ -660,52 +660,57 @@
             const mainForm = document.getElementById('main-form');
             const submitBtn = document.getElementById('submit-btn');
             
-            mainForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Validar que todos los campos requeridos estén completos
-                const contactMethod = document.getElementById('contact_method').value;
-                const nombre = document.getElementById('nombre').value;
-                const terms = document.getElementById('terms').checked;
-                
-                if (!contactMethod || !nombre || !terms) {
-                    alert('Por favor completa todos los campos');
-                    return;
-                }
-                
-                // Mostrar estado de envío
-                submitBtn.disabled = true;
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<span class="spinner"></span>Enviando...';
-                
-                try {
-                    // Enviar el formulario
-                    const response = await fetch(mainForm.action, {
-                        method: 'POST',
-                        body: new FormData(mainForm)
-                    });
-                    
-                    // Mostrar vista de éxito
-                    document.getElementById('form-view').classList.add('hidden');
-                    document.getElementById('success-view').classList.remove('hidden');
-                    
-                    // Reiniciar el formulario después de 3 segundos
-                    setTimeout(() => {
-                        mainForm.reset();
-                        document.getElementById('form-view').classList.remove('hidden');
-                        document.getElementById('success-view').classList.add('hidden');
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalText;
-                        updateContactFields('');
-                    }, 3000);
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                    alert('Error al enviar el formulario. Intenta de nuevo.');
-                }
-            });
+mainForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Validar que todos los campos requeridos estén completos
+    const contactMethod = document.getElementById('contact_method').value;
+    const nombre = document.getElementById('nombre').value;
+    const terms = document.getElementById('terms').checked;
+    
+    if (!contactMethod || !nombre || !terms) {
+        alert('Por favor completa todos los campos');
+        return;
+    }
+    
+    // Mostrar estado de envío
+    submitBtn.disabled = true;
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="spinner"></span>Enviando...';
+    
+    try {
+        // Enviar el formulario
+        const response = await fetch(mainForm.action, {
+            method: 'POST',
+            body: new FormData(mainForm)
+        });
+        
+        // ✅ VALIDAR LA RESPUESTA
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        
+        // Mostrar vista de éxito
+        document.getElementById('form-view').classList.add('hidden');
+        document.getElementById('success-view').classList.remove('hidden');
+        
+        // Reiniciar el formulario después de 3 segundos
+        setTimeout(() => {
+            mainForm.reset();
+            document.getElementById('form-view').classList.remove('hidden');
+            document.getElementById('success-view').classList.add('hidden');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            updateContactFields('');
+        }, 3000);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        alert('Error al enviar el formulario. Intenta de nuevo.');
+    }
+});
             
             const contactSelect = document.getElementById('contact_method');
             if (contactSelect) {
