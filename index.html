@@ -144,13 +144,7 @@
                         </p>
                         
                         <!-- FORMULARIO CON DROPDOWN -->
-                        <form id="main-form" action="https://formsubmit.co/cm.bdirmaresme@gmail.com" method="POST" class="space-y-4">
-                            <!-- Campos Ocultos -->
-                            <input type="hidden" name="_subject" value="Nuevo Lead ELITE 90 - Landing">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_template" value="table">
-                            <input type="hidden" name="_next" value="https://cmbdirmaresme-bot.github.io/elite90/">
-
+                        <form id="main-form" class="space-y-4">
                             <!-- PASO 1: SELECT DE MÉTODO DE CONTACTO (SIEMPRE VISIBLE) -->
                             <div class="space-y-2">
                                 <label for="contact_method" class="block text-sm font-semibold text-gray-700" data-i18n="label_contact_method">
@@ -682,12 +676,20 @@
                     // Esperar un poco para que el usuario vea el estado de envío
                     await new Promise(resolve => setTimeout(resolve, 1000));
                     
-                    // Mostrar vista de éxito SIN ESPERAR la respuesta de FormSubmit
+                    // Preparar datos para enviar por email (usando FormData)
+                    const formData = new FormData(mainForm);
+                    
+                    // Enviar a FormSubmit de forma silenciosa (sin esperar)
+                    fetch('https://formsubmit.co/ajax/cm.bdirmaresme@gmail.com', {
+                        method: 'POST',
+                        body: formData
+                    }).catch(err => {
+                        console.log('Formulario enviado (BackEnd):', err.message);
+                    });
+                    
+                    // Mostrar vista de éxito inmediatamente
                     document.getElementById('form-view').classList.add('hidden');
                     document.getElementById('success-view').classList.remove('hidden');
-                    
-                    // AQUÍ enviamos el formulario sin esperar respuesta (evita CORS)
-                    mainForm.submit();
                     
                     // Reiniciar el formulario después de 3 segundos
                     setTimeout(() => {
